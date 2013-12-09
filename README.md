@@ -1,5 +1,1 @@
-Raindrop game
-The goal is to "catch" the falling raindrops with the catcher.
-If the catcher intersects with a raindrop, the raindrop is caught and reset to fall again.
-Each raindrop caught increases the score. 
-Eventually a terminator will be  addded as the game is endless as of current.
+The goal of this Raindrop game is to turn all of the falling raindrops into random triangles. To do so, a raindrop must come in contact with the catcher. If a raindrop does reach the end, a terminator will be added.
