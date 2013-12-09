@@ -1,49 +1,35 @@
-class Ball {
-  PVector loc, vel;
+class Raindrop {
+  PVector loc, vel, acc;
   int d;
   color c;
 
-  Ball() {
-    loc = new PVector(random(width), random(height));
-    vel = PVector.random2D();
-    d = 80;
-    c = color(random(360), 100, 100);
+  Raindrop() {
+    d = 10;
+    loc = new PVector(random(width), -d); 
+    vel = new PVector(0, random(1, 2));
+    acc = new PVector(0, .01);
   }
 
   void display() {
-    fill(c, 100);
-    stroke(c);
-    strokeWeight(4);
+    fill(c);
+    noStroke();
     ellipse(loc.x, loc.y, d, d);
+    triangle(loc.x-(d/2)-(vel.x*10),loc.y,loc.x+(d/2)+(vel.x*10),loc.y,loc.x,loc.y-(vel.y*10));
   }
-
-  void move() {
+  void drop() {
+    vel.add(acc);
     loc.add(vel);
   }
-  //I made edgeBounce its own method in case I want to add other functionality when the balls hit the edge
-  //Having this already pulled into its own function makes it easy to identify when balls hit the edge
-  void edgeBounce() {
-    if (loc.x > width) {
-      vel.x = -abs(vel.x);
-    } 
-    if (loc.x < 0) {
-      vel.x = abs(vel.x);
-    }
-    if (loc.y > height) {
-      vel.y = -abs(vel.y);
-    } 
-    if (loc.y < 0) {
-      vel.y = abs(vel.y);
-    }
+  void reset() {
+    loc.set( random(width), 0);
+    vel.set(0, random(1, 3));
   }
 
-  //Now I am modifying this to check for another ball
-  void ballCheck(Ball b) {  //I pass in one argument - an object of the ball class
-    if (loc.dist(b.loc) < d/2 + b.d/2) {  //Check to see if the distance between the centers of the circles is less than the radii of the circles
-      //instead of changing colors, balls get a random velocity
-      vel = PVector.random2D();
-      b.vel = PVector.random2D();
-    }
+  void goAway() {
+    vel.set(0, 0);
+    acc.set(random(-5, 5),random(-5,5));
+  }
+  void colorChange() {
+    c = color(random(50, 150), random(50,150), random(50, 150));
   }
 }
-
