@@ -4,9 +4,10 @@ int threshold = 1000;
 Raindrop[] r = new Raindrop[500000];
 Catcher catcher;
 int score;
+int lives;
 
 void setup() {
-  size(displayWidth,displayHeight);
+  size(800, 800);
   for (int i = 0; i < r.length; i++) {
     r[i] = new Raindrop();
   } 
@@ -18,22 +19,25 @@ void draw() {
   textSize(50);
   fill(10);
   text(score, 10, 100);
-  for (int i = 0; i < index; i++) {
-    r[i].display();
-    r[i].drop();
-    if (catcher.catchDrop(r[i]) == true) {
-      r[i].goAway();
-      fill(random(255),random(255),random(255));
-      score++;
-      threshold-=100;
+  if (lives<15) {  
+    for (int i = 0; i < index; i++) {
+      r[i].display();
+      r[i].drop();
+      if (catcher.catchDrop(r[i]) == true) {
+        r[i].goAway();
+        fill(random(255), random(255), random(255));
+        score++;
+        threshold=500;
+      }
     }
-  }
-  catcher.display();
-  catcher.update();
-  if (millis() - oldTime > threshold) {
-    if (index < r.length) {
-      index++;
-      oldTime = millis();
+    catcher.display();
+    catcher.update();
+    if (millis() - oldTime > threshold) {
+      if (index < r.length) {
+        index++;
+        oldTime = millis();
+      }
     }
   }
 }
+
