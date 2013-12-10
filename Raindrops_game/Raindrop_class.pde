@@ -14,11 +14,18 @@ class Raindrop {
     fill(c);
     noStroke();
     ellipse(loc.x, loc.y, d, d);
-    triangle(loc.x-(d/2)-(vel.x*10),loc.y,loc.x+(d/2)+(vel.x*10),loc.y,loc.x,loc.y-(vel.y*10));
+    triangle(loc.x-(d/2)-(vel.x*10), loc.y, loc.x+(d/2)+(vel.x*10), loc.y, loc.x, loc.y-(vel.y*10));
   }
   void drop() {
     vel.add(acc);
     loc.add(vel);
+    if (loc.y>800) {
+      loc.x=1000;
+      loc.y=-200;
+      acc.set(0, 0);
+      vel.set(0, 0);
+      lives++;
+    }
   }
   void reset() {
     loc.set( random(width), 0);
@@ -27,9 +34,10 @@ class Raindrop {
 
   void goAway() {
     vel.set(0, 0);
-    acc.set(random(-5, 5),random(-5,5));
+    acc.set(random(-5, 5), random(-5, 5));
   }
   void colorChange() {
-    c = color(random(50, 150), random(50,150), random(50, 150));
+    c = color(random(50, 150), random(50, 150), random(50, 150));
   }
 }
+
