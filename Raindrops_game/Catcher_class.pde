@@ -1,39 +1,31 @@
-int index = 1;
-int oldTime = 0;
-int threshold = 1000;
-Raindrop[] r = new Raindrop[500000];
-Catcher catcher;
-int score;
+class Catcher {
+  PVector loc;
+  PVector vel;
+  int d;
+  int x;
 
-void setup() {
-  size(displayWidth,displayHeight);
-  for (int i = 0; i < r.length; i++) {
-    r[i] = new Raindrop();
-  } 
-  catcher = new Catcher();
-}
 
-void draw() {
-  background(200, 150, 255);
-  textSize(50);
-  fill(10);
-  text(score, 10, 100);
-  for (int i = 0; i < index; i++) {
-    r[i].display();
-    r[i].drop();
-    if (catcher.catchDrop(r[i]) == true) {
-      r[i].goAway();
-      fill(random(255),random(255),random(255));
-      score++;
-      threshold-=100;
-    }
+  Catcher() {
+    d = 75;
+    vel = new PVector(12, 0);
+    loc = new PVector(d, height-2*d);
   }
-  catcher.display();
-  catcher.update();
-  if (millis() - oldTime > threshold) {
-    if (index < r.length) {
-      index++;
-      oldTime = millis();
+
+  void display() {
+    fill(255);
+    ellipse(loc.x, loc.y, d, d);
+  }
+
+  void update() {
+    loc.x=mouseX;
+  }
+  boolean catchDrop(Raindrop drop) {
+    if (loc.dist(drop.loc) < d/2 + drop.d/2) {
+      drop.colorChange();
+      return true;
+    }
+    else {
+      return false;
     }
   }
 }
