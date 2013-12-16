@@ -22,6 +22,7 @@ class Catcher {
   boolean catchDrop(Raindrop drop) {
     if (loc.dist(drop.loc) < d/2 + drop.d/2) {
       drop.colorChange();
+      drop.caught = true;
       return true;
     }
     else {
