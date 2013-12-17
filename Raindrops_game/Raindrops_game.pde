@@ -8,6 +8,7 @@ int lives;
 boolean start=false;
 
 void setup() {
+  background(0);
   size(800, 800);
   for (int i = 0; i < r.length; i++) {
     r[i] = new Raindrop();
@@ -17,10 +18,10 @@ void setup() {
 
 void draw() {
   if (start==true) {
-    background(200, 150, 255);
+    background(91, 165, 67);
     textSize(50);
     fill(10);
-    text(score, 10, 100);
+    text(score, 60, 100);
     if (lives<15) {  
       for (int i = 0; i < index; i++) {
         r[i].display();
@@ -43,6 +44,9 @@ void draw() {
     }
   }
   if (start==false) {
+    fill(155,200,30);
+    textSize(50);
+    textAlign(CENTER);
    text("PRESS MOUSE TO START",width/2,height/2);
   }
 }
@@ -50,4 +54,3 @@ void draw() {
 void mousePressed() {
   start=true;
 }
-
