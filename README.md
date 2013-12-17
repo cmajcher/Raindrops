@@ -1,1 +1,1 @@
-The goal of this Raindrop game is prevent the falling raindrops fomr reaching the ground. To do so, a raindrop must come in contact with the catcher. If 15 raindrops reach the end, the game terminates.
+The goal of this Raindrop game is prevent the falling raindrops fomr reaching the ground. To do so, a raindrop must come in contact with the catcher. If 15 raindrops reach the end, the game terminates.Things to be added: End screen, different raindrops fall, cause different points/different effects, comments, branches? 
